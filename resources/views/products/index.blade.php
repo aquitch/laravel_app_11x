@@ -20,13 +20,13 @@
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->description }}</td>
                         <td>
-                            <a href="{{ route('products.show', $product->id) }}">
-                                <button class="btn btn-success">Show</button>
-                            </a>
-                            <a href="{{ route('products.edit', $product->id) }}">
-                                <button class="btn btn-warning">Edit</button>
-                            </a>
                             <form action="{{ route('products.destroy', $product->id) }}" method="POST">
+                                <a href="{{ route('products.show', $product->id) }}">
+                                    <button class="btn btn-success">Show</button>
+                                </a>
+                                <a href="{{ route('products.edit', $product->id) }}">
+                                    <button class="btn btn-warning">Edit</button>
+                                </a>
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
