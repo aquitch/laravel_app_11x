@@ -54,7 +54,7 @@
                 </ul>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Корзина</a>
+                    <a class="nav-link" href="{{ route('cart.show') }}" tabindex="-1" aria-disabled="true">Корзина</a>
                   </li>
                 </ul>
                 <form class="d-flex">
