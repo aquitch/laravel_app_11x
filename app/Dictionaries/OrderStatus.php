@@ -3,15 +3,15 @@
 namespace App\Dictionaries;
 
 class OrderStatus
-{
-    protected static $statuses = [
+{   
+    protected static $statuses = [ //Свойство
         'Создан',
         'Оплачен',
         'Отправлен',
         'Получен',
     ];
 
-    static public function status($id)
+    static public function status($id) //Метод
     {
         return self::$statuses[$id];
     }

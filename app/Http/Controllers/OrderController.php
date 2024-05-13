@@ -35,7 +35,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         Order::create([
-            'user_id' => $request->user_id,
+            'user_id' => $request->user_id, //auth()->user()->id
             'status_id' => $request->status_id,
             'comment' => $request->comment
         ]);
@@ -73,7 +73,7 @@ class OrderController extends Controller
             'status_id' => $request->status_id,
             'comment' => $request->comment
         ]);
-        
+
         return redirect()->route('orders.index');
     }
 
