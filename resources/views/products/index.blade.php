@@ -31,6 +31,12 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
+                            <form action="{{ route('cart.update') }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <input hidden value="{{ $product->id }}" name="product_id">
+                                <button type="submit" class="btn btn-primary">Add to cart</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

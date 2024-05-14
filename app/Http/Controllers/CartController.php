@@ -15,4 +15,11 @@ class CartController extends Controller
 
         return view('cart', compact('user'));
     }
+
+    public function update(Request $request)
+    {
+        $user = User::with('cart')->find(1)->addToCart($request->product_id);
+
+        return redirect()->route('cart.show');
+    }
 }

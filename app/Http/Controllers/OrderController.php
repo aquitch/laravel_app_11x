@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Dictionaries\OrderStatus;
+use Illuminate\Support\Arr;
 
 class OrderController extends Controller
 {
@@ -34,12 +35,24 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        Order::create([
+        //dd($request->products);
+        /*
+        $array = [];
+
+        foreach($request->amount as $key => $value)
+        {
+            $array[$key] = ['amount' => $value]; 
+        }
+       */
+
+        $order = Order::create([
             'user_id' => $request->user_id,
             'status_id' => $request->status_id,
             'comment' => $request->comment
         ]);
-        
+
+        $order->products()->attach($request->products);
+
         return redirect()->route('orders.index');
     }
 

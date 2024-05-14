@@ -21,7 +21,8 @@
                     <td>{{ $order->comment }}</td>
                     <td>
                         @foreach ($order->products as $item)
-                            {{ $item->name }}
+                                {{ $item->name . ': ' }}
+                                {{ $item->pivot->amount . 'шт'}} <br>
                         @endforeach
                     </td>
                     <td>

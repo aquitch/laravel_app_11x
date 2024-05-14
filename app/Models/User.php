@@ -58,4 +58,19 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Product::class, 'cart', 'user_id', 'product_id')->withPivot('amount');
     }
+
+    public function addToCart($product_id)
+    {
+        $productAmount = 0;
+
+        foreach($this->cart()->get() as $product)
+        {    
+            if($product->id == $product_id)
+            {
+                $productAmount = $product->pivot->amount;
+            }
+        }
+
+        $this->cart()->syncWithoutDetaching([$product_id => ['amount' => $productAmount + 1]]);
+    }
 }
