@@ -6,7 +6,6 @@ use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Dictionaries\OrderStatus;
-use Illuminate\Support\Arr;
 
 class OrderController extends Controller
 {
@@ -35,7 +34,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->products);
+        //dd($request);
         /*
         $array = [];
 
@@ -43,7 +42,7 @@ class OrderController extends Controller
         {
             $array[$key] = ['amount' => $value]; 
         }
-       */
+        */
 
         $order = Order::create([
             'user_id' => $request->user_id,
@@ -95,6 +94,8 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
+        $order->products()->detach();
+                
         $order->delete();
 
         return redirect()->route('orders.index');
