@@ -29,6 +29,11 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        if ($user->role != 1)
+        {
+            return error('403');
+        }
+        
         Product::create([
             'name' => $request->name,
             'description' => $request->description

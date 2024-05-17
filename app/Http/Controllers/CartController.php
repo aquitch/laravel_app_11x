@@ -11,7 +11,7 @@ class CartController extends Controller
 {
     public function show()
     {
-        $user = User::with('cart')->find(1); //auth()->user()
+        $user = User::with('cart')->find(1); //auth()->user()->role_id
 
         //dd($user);
 
