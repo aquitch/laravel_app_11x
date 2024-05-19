@@ -45,7 +45,7 @@ class OrderController extends Controller
         */
 
         $order = Order::create([
-            'user_id' => $request->user_id,
+            'user_id' => auth()->user()->id,
             'status_id' => $request->status_id,
             'comment' => $request->comment
         ]);
@@ -81,7 +81,7 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         $order->update([
-            'user_id' => $request->user_id,
+            'user_id' => auth()->user()->id,
             'status_id' => $request->status_id,
             'comment' => $request->comment
         ]);

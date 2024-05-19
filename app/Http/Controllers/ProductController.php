@@ -10,9 +10,10 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $products = Product::all();
+    public function index(Request $request)
+    {  
+        $products = Product::where('name', 'like', '%' . $request->search . '%')->get();
+
         return view('products.index', compact("products"));
     }
 
@@ -29,14 +30,10 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        if ($user->role != 1)
-        {
-            return error('403');
-        }
-        
         Product::create([
             'name' => $request->name,
-            'description' => $request->description
+            'description' => $request->description,
+            'user_id' => auth()->user()->id
         ]);
 
         return redirect()->route('products.index');

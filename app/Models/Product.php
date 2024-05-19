@@ -11,7 +11,8 @@ class Product extends Model
 
     protected $fillable = [
         'name',
-        'description'
+        'description',
+        'user_id'
     ];
 
     public function orders(): BelongsToMany 

@@ -11,16 +11,12 @@ class CartController extends Controller
 {
     public function show()
     {
-        $user = User::with('cart')->find(1); //auth()->user()->role_id
-
-        //dd($user);
-
-        return view('cart', compact('user'));
+        return view('cart', ['user' => auth()->user()->load('cart')]);
     }
 
     public function update(Request $request)
     {
-        User::with('cart')->find(1)->addToCart($request->product_id);
+        auth()->user()->addToCart($request->product_id);
 
         return redirect()->route('cart.show');
     }
